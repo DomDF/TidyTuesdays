@@ -1,16 +1,17 @@
 # Set Working Directory
-setwd("~/TidyTuesday")
+setwd("~/GitHub/TidyTuesdays")
 
 # Load Libraries
 library(tidyverse); library(ggrepel); library(extrafont); library(ggthemes)
 
 # Read in data
-passwords <- na.omit(readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv')) %>%
+passwords <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv') %>%
+  na.omit() %>% 
   mutate(category = str_to_title(category)) %>% 
   mutate(length = nchar(password))
 
 # Plot Parameters
-y_upper <- 0.5; y_lower <- -12; space <- 2; label_size <- 2.75; set.seed(1)
+y_upper <- 0.5; y_lower <- -12; space <- 2; label_size <- 2.75; set.seed(1008)
 
 # Creating Plot  
 passwords_plot <- ggplot(data = passwords)+
@@ -34,4 +35,6 @@ passwords_plot <- ggplot(data = passwords)+
                      limits = c(min(log(passwords$offline_crack_sec)) - space, max(log(passwords$offline_crack_sec)) + space))+
   ggtitle(label = "Relationship Between Security and Length of Various Categories of Common Passwords", 
           subtitle = expression(paste("'Crack Times' of  > 1 second and < ", 10^-12, " seconds are labelled in green and red, respectively")))+
-  labs(caption = "Tidy Tuesday 2020, Week 3. @d73mwf")
+  labs(caption = "Tidy Tuesday 2020, Week 3. Data from  Information is Beautiful. @d73mwf")
+
+ggsave(filename = 'week3.png', plot = passwords_plot, device = 'png', width = 8.27, height = 11.69, units = 'in', dpi = 'retina')
