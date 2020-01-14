@@ -44,9 +44,9 @@ passwords_plot <- ggplot(data = passwords, mapping = aes(x = length, y = log_onl
   geom_hline(mapping = aes(yintercept = y_lower), linetype = 2, alpha = 0.5, col = 'darkred')+ # Draw the threshold for easy to crack passwords
   facet_wrap(facets = ~category, nrow = 5)+
   theme_tufte(base_size = 11, base_family = 'Bahnschrift')+
-  scale_x_continuous(name = 'Password Length', limits = c(min(passwords$length)-space, max(passwords$length) + space))+
+  scale_x_continuous(name = 'Password Length', limits = c(min(passwords$length) - space, max(passwords$length) + space))+
   scale_y_continuous(name = expression(Log[10]("Time Taken to Guess Password", seconds)), 
-                     limits = c(min(log10(passwords$online_crack_sec)) - space, max(log10(passwords$online_crack_sec)) + space))+
+                     limits = c(min(passwords$log_online_crack_sec) - space, max(passwords$log_online_crack_sec) + space))+
   labs(title = "Relationship Between Security and Length of Various Categories of Common Passwords",
        subtitle = expression(paste("'Online Guess Times' of  > 1 year and < 10 minutes are labelled in green and red, respectively.")),
        caption = "Tidy Tuesday 2020, Week 3  |  Data from  Information is Beautiful  |  @d73mwf")
