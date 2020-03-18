@@ -10,3 +10,6 @@ A column chart (using polar coordinates) describing the features of songs from p
 
 2020, Week6: 
 An animation showing the the weekly attendances at NFL games for 2 teams that moved to LA at a similar time.
+
+2020, Week11:
+A map, and column chart showing salaries and fees of US universities.
