@@ -1,4 +1,4 @@
-library(tidyverse)
+library(tidyverse); library(extrafont)
 
 wwc_outcomes <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-07-09/wwc_outcomes.csv")
 squads <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-07-09/squads.csv")
@@ -44,8 +44,8 @@ label_tbl <- knock_outs %>%
     stage != 'Winners' ~ 'white',
   )) %>% 
   mutate(size = case_when(
-    stage == 'Winners' ~ 2.75,
-    stage != 'Winners' ~ 2.25,
+    stage == 'Winners' ~ 3,
+    stage != 'Winners' ~ 2,
   ))
 
 ggplot(data = knock_outs,
@@ -54,7 +54,7 @@ ggplot(data = knock_outs,
   geom_text(data = label_tbl, mapping = aes(x = 10, y = team, label = stage), col = label_tbl$colour,
             nudge_x = 0.5, family = 'Bahnschrift', size = label_tbl$size)+
   facet_wrap(facets = ~ year, scales = 'free_y', nrow = 2)+
-  scale_fill_gradient(low = 'yellow', high = 'firebrick', breaks = c(30, 60, 90, 120))+
+  scale_fill_gradient(low = 'white', high = 'firebrick', breaks = c(30, 60, 90, 120))+
   theme_ddf_dark() + theme(axis.title = element_blank(), legend.title = element_text(size = 10))+
   guides(fill = guide_colourbar(barwidth = 12))+
   labs(title = "Goals Scored in Knock-Out Matches of Women's World Cup (WWC) Tournaments, 1991 \u279c 2019",
@@ -63,4 +63,4 @@ ggplot(data = knock_outs,
        fill = 'Total Number of WWC Tournament Goals Scored \n(Including Group Stage Games)',
        caption = 'Tidy Tuesday 2019, Week 28  |  Data from data.world  |  @d73mwf')
 
-ggsave(filename = 'wwc.png', device = 'png', width = 9, height = 6, dpi = 'retina')
+ggsave(filename = '2019_week28_2.png', device = 'png', width = 9, height = 6, dpi = 'retina')
