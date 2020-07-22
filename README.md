@@ -16,3 +16,6 @@ A map, and column chart showing salaries and fees of US universities.
 
 #### 2020, Week12:
 Partial pooling linear model (using the lme4 package) to see how IMDB ratings of The Office (US) varied within and between seasons.
+
+#### 2019, Week28:
+Number of goals scored by each team in the knock-out stages of the women's world cup.
