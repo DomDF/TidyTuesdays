@@ -31,8 +31,8 @@ cats_and_dogs_NSW_QLD <- animal_outcomes_tidy %>%
   dplyr::filter(state_or_territory == 'NSW' | state_or_territory == 'QLD') %>% 
   mutate(cat_image = 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Cat_%2849952%29_-_The_Noun_Project.svg',
          dog_image = 'https://upload.wikimedia.org/wikipedia/commons/8/89/Dog.svg',
-         QLD_image = 'https://upload.wikimedia.org/wikipedia/commons/0/04/Flag_of_Queensland.svg',
-         NSW_image = 'https://upload.wikimedia.org/wikipedia/commons/4/47/New_South_Wales_Customs_House_Flag_%281832%29.svg')
+         QLD_image = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Coat_of_Arms_of_Queensland.svg',
+         NSW_image = 'https://upload.wikimedia.org/wikipedia/commons/2/21/Coat_of_Arms_of_New_South_Wales.svg')
 
 library(ggimage)
 
@@ -59,7 +59,7 @@ RSPCA_plot <- ggplot(data = cats_and_dogs_NSW_QLD %>%
                dplyr::filter(outcome == 'Reclaimed' | outcome == 'Rehomed' | outcome == 'Euthanized') %>% 
                dplyr::filter(state_or_territory == 'NSW'), 
              mapping = aes(x = 2010, y = 0.8, image = NSW_image),
-             alpha = 0.4, size = 0.15)+
+             alpha = 0.4, size = 0.2)+
   facet_grid(state_or_territory_long ~ animal_type)+
   scale_y_continuous(name = 'Percentage of total annual cases in state or territory, by animal type', 
                      limits = c(0, 1), labels = scales::label_percent())+
