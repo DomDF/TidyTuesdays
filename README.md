@@ -19,3 +19,6 @@ Partial pooling linear model (using the lme4 package) to see how IMDB ratings of
 
 #### 2019, Week28:
 Number of goals scored by each team in the knock-out stages of the women's world cup.
+
+#### 2020, Week30:
+The proportion of cats and dogs in RSPCA Australia (QLD and NSW) care, that have been rehomed.
