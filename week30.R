@@ -1,7 +1,7 @@
 # TidyTuesday 2020 Week 30
 # https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-07-21/readme.md
 
-library(tidyverse)
+library(tidyverse); library(extrafont); library(DomDF)
 
 animal_outcomes <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-21/animal_outcomes.csv')
 # animal_complaints <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-21/animal_complaints.csv')
