@@ -22,3 +22,6 @@ Number of goals scored by each team in the knock-out stages of the women's world
 
 #### 2020, Week30:
 The proportion of cats and dogs in RSPCA Australia (QLD and NSW) care, that have been rehomed.
+
+#### 2019, Week31:
+The price and metacritic scores of videogames downloaded from Steam.
