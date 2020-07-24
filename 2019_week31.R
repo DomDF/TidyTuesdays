@@ -25,7 +25,7 @@ clean_df <- raw_df %>%
          owners = as.factor(x = owners),
          release_date = lubridate::mdy(release_date),
          release_year = lubridate::year(release_date),
-         release_decade = as.factor(paste0((10 * (floor(x = million_plus$release_year / 10))), "'s")),
+         release_decade = as.factor(paste0((10 * (floor(x = release_year / 10))), "'s")),
          normalised_log_median_playtime = scales::rescale(x = log(median_playtime)),
          price = case_when(
            is.na(price) ~ 0,
