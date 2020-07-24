@@ -25,7 +25,7 @@ clean_df <- raw_df %>%
          owners = as.factor(x = owners),
          release_date = lubridate::mdy(release_date),
          release_year = lubridate::year(release_date),
-         release_decade = as.factor(paste0(signif(x = release_year, digits = 3), "'s")),
+         release_decade = as.factor(paste0((10 * (floor(x = million_plus$release_year / 10))), "'s")),
          normalised_log_median_playtime = scales::rescale(x = log(median_playtime)),
          price = case_when(
            is.na(price) ~ 0,
@@ -41,7 +41,12 @@ million_plus <- clean_df %>%
                   owners == unique(clean_df$owners)[4] |
                   owners == unique(clean_df$owners)[11] |
                   owners == unique(clean_df$owners)[12] |
-                  owners == unique(clean_df$owners)[13])
+                  owners == unique(clean_df$owners)[13]) %>% 
+  mutate(release_interval = factor(x = case_when(
+    release_year < 2010 ~ 'Pre 2010',
+    release_year > 2015 ~ 'Since 2016',
+    TRUE ~ '2010 - 2015'
+  ), levels = c('Pre 2010', '2010 - 2015', 'Since 2016')))
 
 scores <- million_plus %>% 
   dplyr::filter(!is.na(release_year) & !is.na(metascore)) %>% 
@@ -51,12 +56,12 @@ max_score <- max(scores); min_score <- min(scores)
 
 metascore_by_decade <- million_plus %>% 
   dplyr::filter(!is.na(release_year) & !is.na(metascore)) %>% 
-  group_by(release_decade) %>% 
+  group_by(release_interval) %>% 
   mutate(dec_avg_score = mean(metascore),
          dec_avg_price = mean(price)) %>% 
   ungroup() %>% 
-  distinct(release_decade, .keep_all = TRUE) %>% 
-  select(release_decade, dec_avg_score, dec_avg_price)
+  distinct(release_interval, .keep_all = TRUE) %>% 
+  select(release_interval, dec_avg_score, dec_avg_price)
 
 ggplot(data = million_plus %>% 
          dplyr::filter(!is.na(release_year) & !is.na(metascore)))+
@@ -75,7 +80,7 @@ ggplot(data = million_plus %>%
   geom_text(mapping = aes(x = 40, y = 50, 
                           label = paste('Average Metascore :', signif(x = dec_avg_score, digits = 3), '\nAverage Price, USD :', signif(x = dec_avg_price, digits = 3))),
             data = metascore_by_decade, family = 'GameBoy', size = 3.5, col = 'darkgreen')+
-  facet_wrap(facets = ~ release_decade, ncol = 1)+
+  facet_wrap(facets = ~ release_interval, ncol = 1)+
   geom_hline(yintercept = max_score, lty = 2, alpha = 0.2)+
   geom_hline(yintercept = min_score, lty = 2, alpha = 0.2)+
   Rokemon::theme_gameboy()+
@@ -89,3 +94,6 @@ ggplot(data = million_plus %>%
         plot.subtitle = element_text(family = 'GameBoy', size = 8))
 
 ggsave(filename = '2019_week31.png', device = 'png', width = 9, height = 9, dpi = 'retina')
+
+
+
