@@ -98,8 +98,8 @@ RHS <- (energy_prop_plot / renewables_plot)
 
 univ_plot <- (energy_type_plot + RHS) +
   plot_layout(ncol = 2, widths = c(4/3, 1))+
-  plot_annotation(title = 'Electricity generation in the highest producing countries in Europe (2016 - 2018)',
-                  subtitle = ' -  France dominates non-renewable clean (nuclear) energy production \n -  There was a rise in percentage of energy produced using clean technology in 2018 \n -  Renewable energy in Europe is primarily generated from hydropower and wind',
+  plot_annotation(title = 'Energy generated in the highest producing countries in Europe (2016 - 2018)',
+                  subtitle = ' -  France dominates non-renewable clean (nuclear) energy production \n -  There was a rise in the percentage of energy produced using clean technology in 2018 \n -  Renewable energy in Europe is primarily generated from hydropower and wind',
                   caption = 'Tidy Tuesday 2020, Week 32  |  Data from Eurostat  |  @Domenic_DF')&
   theme(panel.background = element_rect(fill = 'grey20'), 
         text = element_text(family = 'Bahnschrift', colour = 'white'),
