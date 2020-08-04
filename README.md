@@ -24,4 +24,7 @@ Number of goals scored by each team in the knock-out stages of the women's world
 The proportion of cats and dogs in RSPCA Australia (QLD and NSW) care, that have been rehomed.
 
 #### 2019, Week31:
-The price and metacritic scores of videogames downloaded from Steam.
+The price and metacritic scores of videogames downloaded from Steam, using a GameBoy theme.
+
+#### 2020, Week32:
+Electricity generation in Europe from 2016 - 2018. A multi-facetted patchwork plot, showing powergeneration by country, by technology, and by year.
