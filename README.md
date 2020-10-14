@@ -29,5 +29,5 @@ The price and metacritic scores of videogames downloaded from Steam, using a Gam
 #### 2020, Week32:
 Electricity generation in Europe from 2016 - 2018. A multi-facetted patchwork plot, showing powergeneration by country, by technology, and by year.
 
-#### 2020, Week34:
+#### 2020, Week42:
 Comparison of datasets with similar summary statistics, that differ in appearnce - to highlight the importance of plotting data.
