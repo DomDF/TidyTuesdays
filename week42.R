@@ -25,18 +25,18 @@ label_df <- boxplot_df %>%
 
 summary_stats <- ggplot(data = label_df)+
   geom_text(mapping = aes(x = 0, y = 0, 
-                          label = paste0('Correlation co-efficent: ', signif(x = rho, digits = 3),
+                          label = paste0('Correlation co-efficent: ', signif(x = rho, digits = 2),
                                          '\n\n Mean(x): ', signif(x = mu_x, digits = 3), 
                                          '\n\n Std. Dev.(x): ', signif(x = sigma_x, digits = 3),
                                          '\n\n Mean(y): ', signif(x = mu_y, digits = 3), 
                                          '\n\n Std. Dev.(y): ', signif(x = sigma_y, digits = 3))),
-            size = 4, family = 'Bahnschrift')+
+            size = 3, family = 'Bahnschrift')+
   facet_wrap(facets = ~ ds_id, nrow = 2)+
   DomDF::theme_ddf_light()+
   theme(axis.text = element_blank(), 
         axis.title = element_blank(), 
         axis.ticks.length = unit(0,'mm'), 
-        strip.text.x = text(color = 'white'))
+        strip.text = element_text(color = 'white'))
 
 boxplots <- ggplot(data = selected_ds %>% 
          tidyr::pivot_longer(cols = c(x, y), 
@@ -51,7 +51,7 @@ boxplots <- ggplot(data = selected_ds %>%
 
 xy_plot <- ggplot(data = selected_ds, 
                   mapping = aes(x = x, y = y))+
-  geom_point(alpha = 0.8)+
+  geom_point(alpha = 0.7)+
   facet_wrap(facets = ~ ds_id, nrow = 2)+
   DomDF::theme_ddf_light()+
   theme(axis.ticks.length = unit(0,'mm'),
@@ -66,3 +66,5 @@ comb_plot <- (summary_stats + boxplots + xy_plot)+
   theme(plot.title = element_text(family = 'Bahnschrift'),
         plot.subtitle = element_text(family = 'Bahnschrift'), 
         plot.caption = element_text(family = 'Bahnschrift'))
+
+ggsave(filename = 'week42.png', device = 'png', width = 9, height = 6, dpi = 'retina')
