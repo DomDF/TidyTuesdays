@@ -31,3 +31,6 @@ Electricity generation in Europe from 2016 - 2018. A multi-facetted patchwork pl
 
 #### 2020, Week42:
 Comparison of datasets with similar summary statistics, that differ in appearnce - to highlight the importance of plotting data.
+
+#### 2021, Week22:
+World record times on various Mario Kart 64 tracks.
