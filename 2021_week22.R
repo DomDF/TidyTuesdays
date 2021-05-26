@@ -19,7 +19,7 @@ ggplot(data = three_lap_df,
   scale_y_continuous(name = '3 Lap Time (seconds)')+
   facet_wrap(facets = ~ track, scales = 'free_y', nrow = 4)+
   Rokemon::theme_gba()+
-  labs(title = 'N64 Mario Kart World Record Track Times (Excluding Shortccuts)', 
+  labs(title = 'N64 Mario Kart World Record Track Times (Excluding Shortcuts)', 
        subtitle = ' - each mushroom represents a new world record \n - after steep increases in the 1990s, progress has since plateaued', 
        caption = 'Tidy Tuesday 2021, Week 22  |  Data from Mario Kart World Records  |  Image from mariokart.fandom.com  |  @Domenic_DF')+
   theme(text = element_text(family = 'Press_Start_2P', size = 9),
