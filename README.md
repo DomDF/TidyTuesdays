@@ -34,3 +34,6 @@ Comparison of datasets with similar summary statistics, that differ in appearnce
 
 #### 2021, Week22:
 World record times on various Mario Kart 64 tracks.
+
+#### 2022, Week5:
+Traits of various dog breeds.
