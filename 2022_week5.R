@@ -18,23 +18,24 @@ pup_df <- breed_traits |>
 affectionate_trainable <- pup_df |>
   dplyr::filter(`Affectionate With Family` == 5 & `Trainability Level` == 5) |> na.omit()
 
-noise_df <- tibble(x_noise = rnorm(n = affectionate_trainable |> nrow(), mean = 0, sd = 1/2),
-                   y_noise = rnorm(n = affectionate_trainable |> nrow(), mean = 0, sd = 1/2))
+set.seed(seed = 240819)
+noise_df <- tibble(x_noise = rnorm(n = affectionate_trainable |> nrow(), mean = 0, sd = 1/3),
+                   y_noise = rnorm(n = affectionate_trainable |> nrow(), mean = 0, sd = 1/3))
 
 ggplot(data = cbind(affectionate_trainable, noise_df) |>
          mutate(`Energy Level` = scales::rescale(x = `Energy Level` + x_noise), 
                 `Mental Stimulation Needs` = scales::rescale(x = `Mental Stimulation Needs` + y_noise)), 
        mapping = aes(x = `Energy Level`, y = `Mental Stimulation Needs`))+
-  ggimage::geom_image(mapping = aes(image = Image), alpha = 1/4, size = 1/8)+
-  ggrepel::geom_text_repel(mapping = aes(label = Breed), size = 4, family = 'Atkinson Hyperlegible', min.segment.length = 1)+
+  ggimage::geom_image(mapping = aes(image = Image), alpha = 1/4, size = 1/10)+
+  ggrepel::geom_text_repel(mapping = aes(label = Breed), size = 4, family = 'Atkinson Hyperlegible', min.segment.length = 1, alpha = 2/3)+
   geom_point(shape = 21, size = 2, mapping = aes(fill = `2020 Popularity`))+
   scale_fill_viridis_c(direction = -1)+
   scale_x_continuous(breaks = scales::pretty_breaks())+
   scale_y_continuous(breaks = scales::pretty_breaks())+
   labs(fill = '2020 Popularity', 
        title = 'Which are the neediest dog breeds?', 
-       subtitle = 'Considering only the most affectionate and trainable, using standardised scales', 
+       subtitle = 'Considering only the most affectionate and trainable, using standardised (relative) scales', 
        caption = 'Tidy Tuesday 2022, Week 5  |  Data from American Kennel Club  |  @Domenic_DF')+
   DomDF::theme_ddf_light(base_family = 'Atkinson Hyperlegible', base_size = 14) +
-  theme(legend.title = element_text(size = 9), plot.subtitle = element_text(size = 12))+
+  theme(legend.title = element_text(size = 9), plot.subtitle = element_text(size = 12, hjust = 0))+
   guides(fill = guide_colorbar(barwidth = 15, barheight = 1/2, title.position = 'left'))
